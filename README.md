@@ -6,11 +6,9 @@ Easy, flexible and feature-rich lavalink@v4 Client. Both for Beginners and Profi
 > features and fixes.
 
 > [!NOTE]
-> We push every change to our dev branch.
+> We push all changes to our `dev` branch.
 
 # Install
-
-Latest stable Version: **`v2.4.0`**
 
 <details><summary>👉 via NPM</summary>
 
