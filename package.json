@@ -1,38 +1,30 @@
 {
-  "name": "lavalink-client",
-  "version": "2.5.0",
-  "description": "Easy, flexible and feature-rich lavalink@v4 Client. Both for Beginners and Proficients.",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.js",
-  "scripts": {
-    "build": "npm run tool:clean && npm run build:all && npm run tool:fixbuild",
-    "build:bun": "bun run tool:clean && bun run build:all:bun && bun run tool:fixbuild",
-    "build:all:bun": "bun run build:cjs && bun run build:esm && bun run build:types",
-    "build:all": "npm run build:cjs && npm run build:esm && npm run build:types",
-    "build:cjs": "tsc -p tools/config/tsconfig.cjs.json && tsc-alias -p tools/config/tsconfig.cjs.json",
-    "build:esm": "tsc -p tools/config/tsconfig.esm.json && tsc-alias -p tools/config/tsconfig.esm.json",
-    "build:types": "tsc -p tools/config/tsconfig.types.json && tsc-alias -p tools/config/tsconfig.types.json",
-    "tool:clean": "node tools/cleanup.js",
-    "tool:fixbuild": "node tools/fixup.js",
-    "lint": "eslint .",
-    "lint:fix": "npm run lint -- --fix",
-    "test": "node -v",
-    "prepublishOnly": "npm run build",
-    "prepare": "npm run build"
-  },
+  "name": "lava-client",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "typings": "./dist/index.d.ts",
   "exports": {
-    "require": "./dist/cjs/index.js",
-    "import": "./dist/esm/index.js",
-    "types": "./dist/types/index.d.js",
-    "default": "./dist/cjs/index.js"
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.js"
+    }
   },
-  "publishConfig": {
-    "access": "public"
+  "directories": {
+    "lib": "src"
   },
   "files": [
     "dist"
   ],
+  "scripts": {
+    "clean": "del-cli node_modules",
+    "build": "tsup",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tomato6966/lavalink-client.git"
@@ -51,29 +43,22 @@
     "name": "Tomato6966",
     "url": "https://github.com/tomato6966/"
   },
-  "contributers": [],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tomato6966/lavalink-client/issues"
   },
   "homepage": "https://tomato6966.github.io/lavalink-client/",
   "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.20.0",
+    "@repo/eslint-config": "*",
     "@types/node": "^22.13.4",
     "@types/ws": "^8.5.14",
-    "@typescript-eslint/eslint-plugin": "^8.24.1",
-    "@typescript-eslint/parser": "^8.24.1",
-    "eslint": "^9.20.1",
-    "tsc-alias": "^1.8.10",
-    "typescript": "^5.7.3"
+    "tsc-alias": "^1.8.10"
   },
   "dependencies": {
-    "tslib": "^2.8.1",
     "ws": "^8.18.0"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "bun": ">=1.1.27"
+    "node": ">=18.0.0"
   }
 }
