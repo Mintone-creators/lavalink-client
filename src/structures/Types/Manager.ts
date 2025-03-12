@@ -11,181 +11,256 @@ import type { GuildShardPayload, SearchPlatform, SponsorBlockChaptersLoaded, Spo
  * The events from the lavalink Manager
  */
 export interface LavalinkManagerEvents {
-    /**
-     * Emitted when a Track started playing.
-     * @event Manager#trackStart
-     */
-    "trackStart": (player: Player, track: Track | null, payload: TrackStartEvent) => void;
-    /**
-     * Emitted when a Track finished.
-     * @event Manager#trackEnd
-     */
-    "trackEnd": (player: Player, track: Track | null, payload: TrackEndEvent) => void;
-    /**
-     * Emitted when a Track got stuck while playing.
-     * @event Manager#trackStuck
-     */
-    "trackStuck": (player: Player, track: Track | null, payload: TrackStuckEvent) => void;
-    /**
-     * Emitted when a Track errored.
-     * @event Manager#trackError
-     */
-    "trackError": (player: Player, track: Track | UnresolvedTrack | null, payload: TrackExceptionEvent) => void;
-    /**
-     * Emitted when the Playing finished and no more tracks in the queue.
-     * @event Manager#queueEnd
-     */
-    "queueEnd": (player: Player, track: Track | UnresolvedTrack | null, payload: TrackEndEvent | TrackStuckEvent | TrackExceptionEvent) => void;
-    /**
-     * Emitted when a Player is created.
-     * @event Manager#playerCreate
-     */
-    "playerCreate": (player: Player) => void;
-    /**
-     * Emitted when a Player is moved within the channel.
-     * @event Manager#playerMove
-     */
-    "playerMove": (player: Player, oldVoiceChannelId: string, newVoiceChannelId: string) => void;
-    /**
-     * Emitted when a Player is disconnected from a channel.
-     * @event Manager#playerDisconnect
-     */
-    "playerDisconnect": (player: Player, voiceChannelId: string) => void;
-    /**
-     * Emitted when a Node-Socket got closed for a specific Player.
-     * Usually emits when the audio websocket to discord is closed, This can happen for various reasons (normal and abnormal), e.g. when using an expired voice server update. 4xxx codes are usually bad.
-     *
-     * So this is just information, normally lavalink should handle disconnections
-     *
-     * Discord Docs:
-     * @link https://discord.com/developers/docs/topics/opcodes-and-status-codes#voice-voice-close-event-codes
-     *
-     * Lavalink Docs:
-     * @link https://lavalink.dev/api/websocket.html#websocketclosedevent
-     * @event Manager#playerSocketClosed
-     */
-    "playerSocketClosed": (player: Player, payload: WebSocketClosedEvent) => void;
-    /**
-     * Emitted when a Player get's destroyed
-     * @event Manager#playerDestroy
-     */
-    "playerDestroy": (player: Player, destroyReason?: DestroyReasonsType) => void;
+  /**
+   * Emitted when a Track started playing.
+   * @event Manager#trackStart
+   */
+  trackStart: (
+    player: Player,
+    track: Track | null,
+    payload: TrackStartEvent
+  ) => void;
+  /**
+   * Emitted when a Track finished.
+   * @event Manager#trackEnd
+   */
+  trackEnd: (
+    player: Player,
+    track: Track | null,
+    payload: TrackEndEvent
+  ) => void;
+  /**
+   * Emitted when a Track got stuck while playing.
+   * @event Manager#trackStuck
+   */
+  trackStuck: (
+    player: Player,
+    track: Track | null,
+    payload: TrackStuckEvent
+  ) => void;
+  /**
+   * Emitted when a Track errored.
+   * @event Manager#trackError
+   */
+  trackError: (
+    player: Player,
+    track: Track | UnresolvedTrack | null,
+    payload: TrackExceptionEvent
+  ) => void;
+  /**
+   * Emitted when the Playing finished and no more tracks in the queue.
+   * @event Manager#queueEnd
+   */
+  queueEnd: (
+    player: Player,
+    track: Track | UnresolvedTrack | null,
+    payload: TrackEndEvent | TrackStuckEvent | TrackExceptionEvent
+  ) => void;
+  /**
+   * Emitted when a Player is created.
+   * @event Manager#playerCreate
+   */
+  playerCreate: (player: Player) => void;
+  /**
+   * Emitted when a Player is moved within the channel.
+   * @event Manager#playerMove
+   */
+  playerMove: (
+    player: Player,
+    oldVoiceChannelId: string,
+    newVoiceChannelId: string
+  ) => void;
+  /**
+   * Emitted when a Player is disconnected from a channel.
+   * @event Manager#playerDisconnect
+   */
+  playerDisconnect: (player: Player, voiceChannelId: string) => void;
+  /**
+   * Emitted when a Node-Socket got closed for a specific Player.
+   * Usually emits when the audio websocket to discord is closed, This can happen for various reasons (normal and abnormal), e.g. when using an expired voice server update. 4xxx codes are usually bad.
+   *
+   * So this is just information, normally lavalink should handle disconnections
+   *
+   * Discord Docs:
+   * @link https://discord.com/developers/docs/topics/opcodes-and-status-codes#voice-voice-close-event-codes
+   *
+   * Lavalink Docs:
+   * @link https://lavalink.dev/api/websocket.html#websocketclosedevent
+   * @event Manager#playerSocketClosed
+   */
+  playerSocketClosed: (player: Player, payload: WebSocketClosedEvent) => void;
+  /**
+   * Emitted when a Player get's destroyed
+   * @event Manager#playerDestroy
+   */
+  playerDestroy: (player: Player, destroyReason?: DestroyReasonsType) => void;
 
-    /**
-     * Always emits when the player (on lavalink side) got updated
-     * @event Manager#playerUpdate
-     */
-    "playerUpdate": (oldPlayerJson: PlayerJson, newPlayer: Player) => void;
+  /**
+   * Always emits when the player (on lavalink side) got updated
+   * @event Manager#playerUpdate
+   */
+  playerUpdate: (oldPlayerJson: PlayerJson, newPlayer: Player) => void;
 
-    /**
-     * Emitted when the player's selfMuted or serverMuted state changed (true -> false | false -> true)
-     * @event Manager#playerMuteChange
-     */
-    "playerMuteChange": (player: Player, selfMuted: boolean, serverMuted: boolean) => void;
+  /**
+   * Emitted when the player's selfMuted or serverMuted state changed (true -> false | false -> true)
+   * @event Manager#playerMuteChange
+   */
+  playerMuteChange: (
+    player: Player,
+    selfMuted: boolean,
+    serverMuted: boolean
+  ) => void;
 
-    /**
-     * Emitted when the player's selfDeafed or serverDeafed state changed (true -> false | false -> true)
-     * @event Manager#playerDeafChange
-     */
-    "playerDeafChange": (player: Player, selfDeafed: boolean, serverDeafed: boolean) => void;
+  /**
+   * Emitted when the player's selfDeafed or serverDeafed state changed (true -> false | false -> true)
+   * @event Manager#playerDeafChange
+   */
+  playerDeafChange: (
+    player: Player,
+    selfDeafed: boolean,
+    serverDeafed: boolean
+  ) => void;
 
-    /**
-     * Emitted when the player's suppressed (true -> false | false -> true)
-     * @event Manager#playerSuppressChange
-     */
-    "playerSuppressChange": (player: Player, suppress: boolean) => void;
+  /**
+   * Emitted when the player's suppressed (true -> false | false -> true)
+   * @event Manager#playerSuppressChange
+   */
+  playerSuppressChange: (player: Player, suppress: boolean) => void;
 
-    /**
-     * Emitted when the player's queue got empty, and the timeout started
-     * @event Manager#playerQueueEmptyStart
-     */
-    "playerQueueEmptyStart": (player: Player, timeoutMs: number) => void;
+  /**
+   * Emitted when the player's queue got empty, and the timeout started
+   * @event Manager#playerQueueEmptyStart
+   */
+  playerQueueEmptyStart: (player: Player, timeoutMs: number) => void;
 
-    /**
-     * Emitted when the player's queue got empty, and the timeout finished leading to destroying the player
-     * @event Manager#playerQueueEmptyEnd
-     */
-    "playerQueueEmptyEnd": (player: Player) => void;
+  /**
+   * Emitted when the player's queue got empty, and the timeout finished leading to destroying the player
+   * @event Manager#playerQueueEmptyEnd
+   */
+  playerQueueEmptyEnd: (player: Player) => void;
 
-    /**
-     * Emitted when the player's queue got empty, and the timeout got cancelled becuase a track got re-added to it.
-     * @event Manager#playerQueueEmptyEnd
-     */
-    "playerQueueEmptyCancel": (player: Player) => void;
+  /**
+   * Emitted when the player's queue got empty, and the timeout got cancelled becuase a track got re-added to it.
+   * @event Manager#playerQueueEmptyEnd
+   */
+  playerQueueEmptyCancel: (player: Player) => void;
 
-    /**
-     * Emitted, when a user joins the voice channel, while there is a player existing
-     * @event Manager#playerQueueEmptyStart
-     */
-    "playerVoiceJoin": (player: Player, userId: string) => void;
+  /**
+   * Emitted, when a user joins the voice channel, while there is a player existing
+   * @event Manager#playerQueueEmptyStart
+   */
+  playerVoiceJoin: (player: Player, userId: string) => void;
 
-    /**
-     * Emitted, when a user leaves the voice channel, while there is a player existing
-     * @event Manager#playerQueueEmptyEnd
-     */
-    "playerVoiceLeave": (player: Player, userId: string) => void;
+  /**
+   * Emitted, when a user leaves the voice channel, while there is a player existing
+   * @event Manager#playerQueueEmptyEnd
+   */
+  playerVoiceLeave: (player: Player, userId: string) => void;
 
-    /**
-     * SPONSORBLOCK-PLUGIN EVENT
-     * Emitted when Segments are loaded
-     * @link https://github.com/topi314/Sponsorblock-Plugin#segmentsloaded
-     * @event Manager#trackError
-     */
-    "SegmentsLoaded": (player: Player, track: Track | UnresolvedTrack | null, payload: SponsorBlockSegmentsLoaded) => void;
+  /**
+   * SPONSORBLOCK-PLUGIN EVENT
+   * Emitted when Segments are loaded
+   * @link https://github.com/topi314/Sponsorblock-Plugin#segmentsloaded
+   * @event Manager#trackError
+   */
+  SegmentsLoaded: (
+    player: Player,
+    track: Track | UnresolvedTrack | null,
+    payload: SponsorBlockSegmentsLoaded
+  ) => void;
 
-    /**
-     * SPONSORBLOCK-PLUGIN EVENT
-     * Emitted when a specific Segment was skipped
-     * @link https://github.com/topi314/Sponsorblock-Plugin#segmentskipped
-     * @event Manager#trackError
-     */
-    "SegmentSkipped": (player: Player, track: Track | UnresolvedTrack | null, payload: SponsorBlockSegmentSkipped) => void;
+  /**
+   * SPONSORBLOCK-PLUGIN EVENT
+   * Emitted when a specific Segment was skipped
+   * @link https://github.com/topi314/Sponsorblock-Plugin#segmentskipped
+   * @event Manager#trackError
+   */
+  SegmentSkipped: (
+    player: Player,
+    track: Track | UnresolvedTrack | null,
+    payload: SponsorBlockSegmentSkipped
+  ) => void;
 
-    /**
-     * SPONSORBLOCK-PLUGIN EVENT
-     * Emitted when a specific Chapter starts playing
-     * @link https://github.com/topi314/Sponsorblock-Plugin#chapterstarted
-     * @event Manager#trackError
-     */
-    "ChapterStarted": (player: Player, track: Track | UnresolvedTrack | null, payload: SponsorBlockChapterStarted) => void;
+  /**
+   * SPONSORBLOCK-PLUGIN EVENT
+   * Emitted when a specific Chapter starts playing
+   * @link https://github.com/topi314/Sponsorblock-Plugin#chapterstarted
+   * @event Manager#trackError
+   */
+  ChapterStarted: (
+    player: Player,
+    track: Track | UnresolvedTrack | null,
+    payload: SponsorBlockChapterStarted
+  ) => void;
 
-    /**
-     * SPONSORBLOCK-PLUGIN EVENT
-     * Emitted when Chapters are loaded
-     * @link https://github.com/topi314/Sponsorblock-Plugin#chaptersloaded
-     * @event Manager#trackError
-     */
-    "ChaptersLoaded": (player: Player, track: Track | UnresolvedTrack | null, payload: SponsorBlockChaptersLoaded) => void;
+  /**
+   * SPONSORBLOCK-PLUGIN EVENT
+   * Emitted when Chapters are loaded
+   * @link https://github.com/topi314/Sponsorblock-Plugin#chaptersloaded
+   * @event Manager#trackError
+   */
+  ChaptersLoaded: (
+    player: Player,
+    track: Track | UnresolvedTrack | null,
+    payload: SponsorBlockChaptersLoaded
+  ) => void;
 
-    /**
-     * Lavalink-Client Debug Event
-     * Emitted for several erros, and logs within lavalink-client, if managerOptions.advancedOptions.enableDebugEvents is true
-     * Useful for debugging the lavalink-client
-     *
-     * @event Manager#debug
-     */
-    "debug": (eventKey: DebugEvents, eventData: { message: string, state: "log" | "warn" | "error", error?: Error | string, functionLayer: string }) => void;
+  /**
+   * Lavalink-Client Debug Event
+   * Emitted for several erros, and logs within lavalink-client, if managerOptions.advancedOptions.enableDebugEvents is true
+   * Useful for debugging the lavalink-client
+   *
+   * @event Manager#debug
+   */
+  debug: (
+    eventKey: DebugEvents,
+    eventData: {
+      message: string;
+      state: "log" | "warn" | "error";
+      error?: Error | string;
+      functionLayer: string;
+    }
+  ) => void;
 
-    /**
-     * Emitted when a Lyrics line is received
-     * @link https://github.com/topi314/LavaLyrics
-     * @event Manager#LyricsLine
-     */
-    "LyricsLine": (player: Player, track: Track | UnresolvedTrack | null, payload: LyricsLineEvent) => void;
+  /**
+   * Emitted when a Lyrics line is received
+   * @link https://github.com/topi314/LavaLyrics
+   * @event Manager#LyricsLine
+   */
+  LyricsLine: (
+    player: Player,
+    track: Track | UnresolvedTrack | null,
+    payload: LyricsLineEvent
+  ) => void;
 
-    /**
-     * Emitted when a Lyrics is found
-     * @link https://github.com/topi314/LavaLyrics
-     * @event Manager#LyricsFound
-     */
-    "LyricsFound": (player: Player, track: Track | UnresolvedTrack | null, payload: LyricsFoundEvent) => void;
+  /**
+   * Emitted when a Lyrics is found
+   * @link https://github.com/topi314/LavaLyrics
+   * @event Manager#LyricsFound
+   */
+  LyricsFound: (
+    player: Player,
+    track: Track | UnresolvedTrack | null,
+    payload: LyricsFoundEvent
+  ) => void;
 
-    /**
-     * Emitted when a Lyrics is not found
-     * @link https://github.com/topi314/LavaLyrics
-     * @event Manager#LyricsNotFound
-     */
-    "LyricsNotFound": (player: Player, track: Track | UnresolvedTrack | null, payload: LyricsNotFoundEvent) => void;
+  /**
+   * Emitted when a Lyrics is not found
+   * @link https://github.com/topi314/LavaLyrics
+   * @event Manager#LyricsNotFound
+   */
+  LyricsNotFound: (
+    player: Player,
+    track: Track | UnresolvedTrack | null,
+    payload: LyricsNotFoundEvent
+  ) => void;
+
+  playerResumed: (
+    player: Player,
+    track: Track | UnresolvedTrack | null
+  ) => void;
+
+  playerPaused: (player: Player, track: Track | UnresolvedTrack | null) => void;
 }
 /**
  * The Bot client Options needed for the manager
