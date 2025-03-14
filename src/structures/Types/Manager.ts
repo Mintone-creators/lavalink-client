@@ -146,18 +146,6 @@ export interface LavalinkManagerEvents {
   playerQueueEmptyCancel: (player: Player) => void;
 
   /**
-   * Emitted, when a user joins the voice channel, while there is a player existing
-   * @event Manager#playerQueueEmptyStart
-   */
-  playerVoiceJoin: (player: Player, userId: string) => void;
-
-  /**
-   * Emitted, when a user leaves the voice channel, while there is a player existing
-   * @event Manager#playerQueueEmptyEnd
-   */
-  playerVoiceLeave: (player: Player, userId: string) => void;
-
-  /**
    * SPONSORBLOCK-PLUGIN EVENT
    * Emitted when Segments are loaded
    * @link https://github.com/topi314/Sponsorblock-Plugin#segmentsloaded

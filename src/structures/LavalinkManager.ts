@@ -692,37 +692,6 @@ export class LavalinkManager extends EventEmitter {
         return;
       }
 
-      /* voice state update */
-      if (update.user_id !== this.options?.client.id) {
-        if (update.user_id && player.voiceChannelId) {
-          this.emit(
-            update.channel_id === player.voiceChannelId
-              ? "playerVoiceJoin"
-              : "playerVoiceLeave",
-            player,
-            update.user_id
-          );
-        }
-
-        if (this.options?.advancedOptions?.enableDebugEvents) {
-          this.emit("debug", DebugEvents.NoAudioDebug, {
-            state: "warn",
-            message: `voice update user is not equal to provided client id of the LavalinkManager.options.client.id :: user: "${update.user_id}" manager client id: "${this.options?.client.id}"`,
-            functionLayer: "LavalinkManager > sendRawData()",
-          });
-        }
-
-        if (this.options?.advancedOptions?.debugOptions?.noAudio === true)
-          console.debug(
-            "Lavalink-Client-Debug | NO-AUDIO [::] sendRawData function, voice update user is not equal to provided client id of the manageroptions#client#id",
-            "user:",
-            update.user_id,
-            "manager client id:",
-            this.options?.client.id
-          );
-        return;
-      }
-
       if (update.channel_id) {
         if (player.voiceChannelId !== update.channel_id)
           this.emit(
