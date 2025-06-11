@@ -29,7 +29,9 @@ export type LavaSrcSearchPlatformBase =
     "tdrec" |
     "qbsearch" |
     "qbisrc" |
-    "qbrec";
+    "qbrec" | 
+    "admsearch"
+    ;
 export type LavaSrcSearchPlatform = LavaSrcSearchPlatformBase | "ftts";
 
 export type JioSaavnSearchPlatform = "jssearch" | "jsrec";
@@ -64,7 +66,7 @@ export type ClientSearchPlatform =
     "sp" | "spsuggestion" | "spotify" | "spotify.com" | "spotifycom" |
     "dz" | "deezer" |
     "yandex" | "yandex music" | "yandexmusic" | "vk" | "vk music" | "vkmusic" | "tidal" | "tidal music" | "qobuz" |
-    "flowerytts" | "flowery" | "flowery.tts" | LavalinkClientSearchPlatformResolve | LavalinkClientSearchPlatform | "js" | "jiosaavn" | "td" | "tidal" | "tdrec";
+    "flowerytts" | "flowery" | "flowery.tts" | LavalinkClientSearchPlatformResolve | LavalinkClientSearchPlatform | "js" | "jiosaavn" | "td" | "tidal" | "tdrec" | "audiomack" | "admsearch";
 
 export type SearchPlatform = LavalinkSearchPlatform | ClientSearchPlatform;
 
