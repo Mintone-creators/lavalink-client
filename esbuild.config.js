@@ -1,6 +1,6 @@
-import { build } from 'esbuild';
-import { rmSync } from 'fs';
-import path from 'path';
+const { build } = require('esbuild');
+const { rmSync } = require('fs');
+const path = require('path');
 
 
 rmSync(path.resolve('dist'), { recursive: true, force: true });
