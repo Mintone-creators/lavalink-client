@@ -1,20 +1,20 @@
 {
   "name": "@appujet/lavalink-client",
-  "version": "2.5.6",
+  "version": "2.5.7",
   "description": "Easy, flexible and feature-rich lavalink@v4 Client. Both for Beginners and Proficients.",
-  "types": "dist/index.d.ts",
-  "main": "src/index.ts",
-  "typings": "./dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js",
+      "default": "./dist/cjs/index.js"
     }
   },
   "scripts": {
-    "build": "tsup",
+    "build": "node esbuild.config.js && tsc -p tsconfig.build.json && tsc-alias",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "test": "node -v",
@@ -28,8 +28,7 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -63,12 +62,11 @@
     "@typescript-eslint/eslint-plugin": "^8.35.1",
     "@typescript-eslint/parser": "^8.35.1",
     "eslint": "^9.30.1",
+    "esbuild": "^0.25.5",
     "tsc-alias": "^1.8.16",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "tslib": "^2.8.1",
-    "tsup": "^8.5.0",
     "ws": "^8.18.3"
   },
   "engines": {
