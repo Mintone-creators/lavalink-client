@@ -4,7 +4,7 @@
         "module": "CommonJS",
         "declaration": true,
         "outDir": "./dist",
-        "rootDir": "./src",
+        "rootDir": ".",
         "skipLibCheck": true,
         "importHelpers": true,
         "moduleResolution": "node",
@@ -22,7 +22,8 @@
         ]
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*.ts",
+        "tsup.config.ts"
     ],
     "exclude": [
         "node_modules",

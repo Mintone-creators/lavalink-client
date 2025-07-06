@@ -11,4 +11,5 @@ bun.lockb
 yarn.lock
 package-lock.json
 pnpm-lock.yaml
+bun.lock
 dist
