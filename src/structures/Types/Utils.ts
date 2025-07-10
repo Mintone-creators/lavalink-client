@@ -170,6 +170,8 @@ export interface Exception {
     message: string;
     /** Cause by lavalink */
     cause: string;
+    /** causeStackTrace by lavalink */
+    causeStackTrace: string;
 }
 
 export interface PlayerEvent {
@@ -611,3 +613,5 @@ export type LavaSearchQuery = {
     /** The Types to filter the search to */
     types?: LavaSearchType[]
 };
+
+export type Awaitable<T> = Promise<T> | T
